@@ -91,21 +91,21 @@ Attribute VB_Exposed = False
 Option Explicit
 
 Private Keep As Boolean
-Private ROEXE As String
-Private Const LOKI As String = "Loki Launcher"
+Private ROExe As String
+Private Title As String
 Private Lvar As String
 
 Private Sub imgKeep_MouseDown(Button As Integer, Shift As Integer, x As Single, Y As Single)
     If Keep Then
         imgKeep.Picture = frmRes.imgCheckOFF.Picture
         Keep = False
-        WriteIni "Loki", "Keep", "false"
-        WriteIni "Loki", "User", vbNullString
+        WriteIni "Loki Launcher", "Keep", "false"
+        WriteIni "Loki Launcher", "User", vbNullString
     Else
         imgKeep.Picture = frmRes.imgCheckON.Picture
         Keep = True
-        WriteIni "Loki", "Keep", "true"
-        WriteIni "Loki", "User", txtUser
+        WriteIni "Loki Launcher", "Keep", "true"
+        WriteIni "Loki Launcher", "User", txtUser
     End If
 End Sub
 
@@ -165,13 +165,13 @@ End Sub
 
 Function isFilled() As String
     If txtUser = vbNullString Then
-        MsgBox "Please fill up username", vbInformation, LOKI
+        MsgBox "Please fill up username", vbInformation, Title
         isFilled = 0
         Exit Function
     End If
     
     If txtPass = vbNullString Then
-        MsgBox "Please fill up password", vbInformation, LOKI
+        MsgBox "Please fill up password", vbInformation, Title
         isFilled = 0
         Exit Function
     End If
@@ -185,7 +185,7 @@ On Error GoTo hell
     
     Dim str1 As String
     
-    str1 = App.Path & "\" & ROEXE & " " & ReadIni("Settings", "ExeArg") & " -t:" & checkMD5(txtPass) & " " & txtUser & " server"
+    str1 = App.Path & "\" & ROExe & " " & ReadIni("Settings", "ExeArg") & " -t:" & checkMD5(txtPass) & " " & txtUser & " server"
     
     Shell str1, vbNormalFocus
     
@@ -193,11 +193,11 @@ On Error GoTo hell
     
     Exit Sub
 hell:
-    MsgBox "Error", vbExclamation, LOKI
+    MsgBox "Error", vbExclamation, Title
 End Sub
 
 Function checkMD5(ByVal pass As String)
-    If UCase(ReadIni("Settings", "MD5")) = "true" Then
+    If LCase(ReadIni("Settings", "MD5")) = "true" Then
         checkMD5 = str2MD5(pass)
     Else
         checkMD5 = pass
@@ -206,22 +206,22 @@ End Function
 
 Private Sub Form_Load()
     On Error Resume Next
-    
     INI_NAME = frmRes.Caption
-   
-    ROEXE = ReadIni("Settings", "Exe")
     
-    If checkPath(App.Path & "\" & ROEXE) = False Then
-        MsgBox "Can't find " & App.Path & "\" & ROEXE, vbCritical, LOKI
+    frmMain.Caption = ReadIni("Settings", "Title")
+    ROExe = ReadIni("Settings", "Exe")
+    
+    If checkPath(App.Path & "\" & ROExe) = False Then
+        MsgBox "Can't find " & App.Path & "\" & ROExe, vbCritical, Title
         Unload Me
         Exit Sub
     End If
     
-    If LCase(ReadIni("Loki", "Keep")) = "true" Then
+    If LCase(ReadIni("Loki Launcher", "Keep")) = "true" Then
         imgKeep.Picture = frmRes.imgCheckON.Picture
         Keep = True
         
-        txtUser = ReadIni("Loki", "User")
+        txtUser = ReadIni("Loki Launcher", "User")
     Else
         imgKeep.Picture = frmRes.imgCheckOFF.Picture
         Keep = False
@@ -231,5 +231,5 @@ Private Sub Form_Load()
 End Sub
 
 Private Sub txtUser_KeyUp(KeyCode As Integer, Shift As Integer)
-    If Keep = True Then WriteIni "Loki", "User", txtUser
+    If Keep = True Then WriteIni "Loki Launcher", "User", txtUser
 End Sub
