@@ -92,7 +92,8 @@ Option Explicit
 
 Private Keep As Boolean
 Private Mode As String
-Private MX, MY As Integer
+Private MX, MY As Single
+Private Lokis As Control
 
 Private Sub Form_Load()
 On Error Resume Next
@@ -215,6 +216,7 @@ Private Sub imgLoginBox_MouseMove(Button As Integer, Shift As Integer, x As Sing
     If Mode = "md" Then Exit Sub
     imgLogin.Picture = frmRes.imgLoginA.Picture
     imgExit.Picture = frmRes.imgExitA.Picture
+    Mode = "lb"
 End Sub
 
 Private Sub imgLoginBox_MouseUp(Button As Integer, Shift As Integer, x As Single, Y As Single)
@@ -222,12 +224,9 @@ Private Sub imgLoginBox_MouseUp(Button As Integer, Shift As Integer, x As Single
 End Sub
 
 Sub MoveDrag(x As Single, Y As Single)
-    Sleep 10
-    Dim lokis As Control
-    For Each lokis In frmLauncher
-        lokis.Left = lokis.Left + (x - MX)
-        lokis.Top = lokis.Top + (Y - MY)
+    For Each Lokis In frmLauncher
+        Lokis.Move Lokis.Left + (x - MX), Lokis.Top + (Y - MY)
     Next
-    Set lokis = Nothing
+    Sleep 30
 End Sub
 
