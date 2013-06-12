@@ -9,6 +9,7 @@
 //= v0.001 Initial Commit
 //= v0.002 MD5 pass support
 //= v0.003 Fix MD5 lol + customizable window title
+//= v0.004 Fix + Login Window Now Movable + file req checks
 //========================================================
 
 
