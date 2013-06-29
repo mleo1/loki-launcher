@@ -17,7 +17,7 @@ Begin VB.Form frmLauncher
    ScaleWidth      =   7605
    StartUpPosition =   2  'CenterScreen
    Begin VB.Timer tmrCheck 
-      Interval        =   200
+      Interval        =   100
       Left            =   1080
       Top             =   6120
    End
@@ -140,11 +140,11 @@ End If
     End If
 End Sub
 
-Private Sub Form_MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
+Private Sub Form_MouseDown(Button As Integer, Shift As Integer, x As Single, y As Single)
     moveForm Me
 End Sub
 
-Private Sub imgKeep_MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
+Private Sub imgKeep_MouseDown(Button As Integer, Shift As Integer, x As Single, y As Single)
     If Keep Then
         imgKeep.Picture = frmRes.imgCheckOFF.Picture
         Keep = False
@@ -158,7 +158,7 @@ Private Sub imgKeep_MouseDown(Button As Integer, Shift As Integer, X As Single, 
     End If
 End Sub
 
-Private Sub Form_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
+Private Sub Form_MouseMove(Button As Integer, Shift As Integer, x As Single, y As Single)
     If Mode = "f" Then Exit Sub
     imgLogin.Picture = frmRes.imgLoginA.Picture
     imgExit.Picture = frmRes.imgExitA.Picture
@@ -166,37 +166,37 @@ Private Sub Form_MouseMove(Button As Integer, Shift As Integer, X As Single, Y A
     Mode = "f"
 End Sub
 
-Private Sub imgLogin_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
+Private Sub imgLogin_MouseMove(Button As Integer, Shift As Integer, x As Single, y As Single)
     If Mode = "l" Then Exit Sub
     imgLogin.Picture = frmRes.imgLoginB.Picture
 imgExit.Picture = frmRes.imgExitA.Picture
     Mode = "l"
 End Sub
 
-Private Sub imgLogin_MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
+Private Sub imgLogin_MouseDown(Button As Integer, Shift As Integer, x As Single, y As Single)
     imgLogin.Picture = frmRes.imgLoginC.Picture
 End Sub
 
-Private Sub imgReplay_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
+Private Sub imgReplay_MouseMove(Button As Integer, Shift As Integer, x As Single, y As Single)
     imgReplay.Picture = frmRes.imgReplayB
 End Sub
 
-Private Sub imgReplay_MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
+Private Sub imgReplay_MouseDown(Button As Integer, Shift As Integer, x As Single, y As Single)
     imgReplay.Picture = frmRes.imgReplayC
 End Sub
 
-Private Sub imgReplay_MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
+Private Sub imgReplay_MouseUp(Button As Integer, Shift As Integer, x As Single, y As Single)
     imgReplay.Picture = frmRes.imgReplayA
 End Sub
 
-Private Sub imgExit_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
+Private Sub imgExit_MouseMove(Button As Integer, Shift As Integer, x As Single, y As Single)
     If Mode = "e" Then Exit Sub
     imgExit.Picture = frmRes.imgExitB.Picture
 imgLogin.Picture = frmRes.imgLoginA.Picture
     Mode = "e"
 End Sub
 
-Private Sub imgExit_MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
+Private Sub imgExit_MouseDown(Button As Integer, Shift As Integer, x As Single, y As Single)
     imgExit.Picture = frmRes.imgExitC.Picture
 End Sub
 
@@ -227,8 +227,8 @@ Private Sub tmrCheck_Timer()
         isRORun = False
         trayIconDel Me
         Me.Show
+        SetTopMostWindow Me.hWnd, True
         ForceWindowToTop Me.hWnd
-        txtPass = vbNullString
         txtPass.SetFocus
     End If
 End Sub
@@ -245,18 +245,21 @@ On Error GoTo hell
     End If
     
     'Me.Hide
-    RO_PID = Shell(ROExeLoc & " " & INI_SETTINGS.EXEArg & " -t:" & cMD5(txtPass) & " " & txtUser & " server", vbNormalFocus)
+    Dim strPass As String
+    strPass = cMD5(txtPass)
+    txtPass = vbNullString
+    RO_PID = Shell(ROExeLoc & " " & INI_SETTINGS.EXEArg & " /account:clientinfo.xml -t:" & strPass & " " & txtUser & " server", vbNormalFocus)
     
     Exit Sub
 hell:
     MsgBox "Error", vbExclamation, INI_SETTINGS.Title
 End Sub
 
-Function cMD5(ByVal Pass As String) As String
+Function cMD5(ByVal pass As String) As String
     If INI_SETTINGS.MD5 = "true" Then
-        cMD5 = DigestStrToHexStr(Pass)
+        cMD5 = DigestStrToHexStr(pass)
     Else
-        cMD5 = Pass
+        cMD5 = pass
     End If
 End Function
 
@@ -269,14 +272,14 @@ Private Sub txtUser_KeyUp(KeyCode As Integer, Shift As Integer)
     If Keep = True Then WriteIni "Loki Launcher", "User", txtUser
 End Sub
 
-Private Sub imgLoginBox_MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
-    MX = X
-    MY = Y
+Private Sub imgLoginBox_MouseDown(Button As Integer, Shift As Integer, x As Single, y As Single)
+    MX = x
+    MY = y
     Mode = "md"
 End Sub
 
-Private Sub imgLoginBox_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
-    If Mode = "md" Then MoveDrag X, Y
+Private Sub imgLoginBox_MouseMove(Button As Integer, Shift As Integer, x As Single, y As Single)
+    If Mode = "md" Then MoveDrag x, y
 
     If Mode = "md" Then Exit Sub
     imgLogin.Picture = frmRes.imgLoginA.Picture
@@ -285,12 +288,12 @@ Private Sub imgLoginBox_MouseMove(Button As Integer, Shift As Integer, X As Sing
     Mode = "lb"
 End Sub
 
-Private Sub imgLoginBox_MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
+Private Sub imgLoginBox_MouseUp(Button As Integer, Shift As Integer, x As Single, y As Single)
     Mode = "lb"
 End Sub
 
-Public Function MoveDrag(X As Single, Y As Single)
+Public Function MoveDrag(x As Single, y As Single)
     For Each Lokis In frmLauncher
-        If Not TypeOf Lokis Is Timer Then Lokis.Move Lokis.Left + (X - MX), Lokis.Top + (Y - MY)
+        If Not TypeOf Lokis Is Timer Then Lokis.Move Lokis.Left + (x - MX), Lokis.Top + (y - MY)
     Next
 End Function

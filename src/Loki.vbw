@@ -9,5 +9,6 @@ movebform = 44, 58, 580, 514,
 frmSplash = 0, 0, 535, 456, , 132, 174, 668, 630, C
 shellW = 22, 29, 557, 485, 
 pidcheckrunning = 22, 29, 557, 485, 
-forcewindowtop = 132, 174, 667, 630, 
 trayIcon = 110, 145, 630, 601, 
+setwindowpos = 154, 203, 674, 659, 
+forcewindowtop = 132, 174, 652, 630, 

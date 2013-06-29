@@ -107,10 +107,11 @@ End Function
 Sub getINIData()
     INI_SETTINGS.Title = ReadIni("Settings", "Title")
     INI_SETTINGS.ROExe = ReadIni("Settings", "Exe")
-    INI_SETTINGS.GRF = ReadIni("Settings", "GRF")
-    INI_SETTINGS.Patchsite = ReadIni("Settings", "Patchsite")
+    'INI_SETTINGS.GRF = ReadIni("Settings", "GRF")
+    'INI_SETTINGS.Patchsite = ReadIni("Settings", "Patchsite")
     INI_SETTINGS.BG = ReadIni("Settings", "BG")
-    INI_SETTINGS.Mode = ReadIni("Settings", "Mode")
+    'INI_SETTINGS.Mode = ReadIni("Settings", "Mode")
+INI_SETTINGS.Mode = 2 'mleo
     INI_SETTINGS.MD5 = LCase(ReadIni("Settings", "MD5"))
     INI_SETTINGS.EXEArg = ReadIni("Settings", "ExeArg")
     
