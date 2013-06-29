@@ -232,7 +232,7 @@ Private Function downloadFile(ByVal strURL As String, ByVal strDestination As St
     Close #intFile
 End Function
 
-Private Sub Form_MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
+Private Sub Form_MouseDown(Button As Integer, Shift As Integer, x As Single, y As Single)
     moveForm Me
 End Sub
 
@@ -253,31 +253,31 @@ Private Sub imgStart_Click()
     If INI_SETTINGS.Mode = "3" Then Shell ROExeLoc
 End Sub
 
-Private Sub Form_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
+Private Sub Form_MouseMove(Button As Integer, Shift As Integer, x As Single, y As Single)
     If Mode = "f" Then Exit Sub
     lokiMagic imgStart, frmRes.picStartA
     lokiMagic imgExit, frmRes.picExitA
     Mode = "f"
 End Sub
 
-Private Sub imgExit_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
+Private Sub imgExit_MouseMove(Button As Integer, Shift As Integer, x As Single, y As Single)
     If Mode = "e" Then Exit Sub
         lokiMagic imgExit, frmRes.picExitB
 lokiMagic imgStart, frmRes.picStartA
     Mode = "e"
 End Sub
 
-Private Sub imgStart_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
+Private Sub imgStart_MouseMove(Button As Integer, Shift As Integer, x As Single, y As Single)
     If Mode = "s" Then Exit Sub
         lokiMagic imgStart, frmRes.picStartB
 lokiMagic imgExit, frmRes.picExitA
     Mode = "s"
 End Sub
 
-Private Sub imgExit_MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
+Private Sub imgExit_MouseDown(Button As Integer, Shift As Integer, x As Single, y As Single)
     lokiMagic imgExit, frmRes.picExitC
 End Sub
 
-Private Sub imgStart_MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
+Private Sub imgStart_MouseDown(Button As Integer, Shift As Integer, x As Single, y As Single)
     lokiMagic imgStart, frmRes.picStartC
 End Sub

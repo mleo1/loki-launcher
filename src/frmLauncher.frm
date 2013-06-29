@@ -17,7 +17,7 @@ Begin VB.Form frmLauncher
    ScaleWidth      =   7605
    StartUpPosition =   2  'CenterScreen
    Begin VB.Timer tmrCheck 
-      Interval        =   200
+      Interval        =   100
       Left            =   1080
       Top             =   6120
    End
@@ -221,15 +221,12 @@ Private Sub tmrCheck_Timer()
         If isRORun = True Then Exit Sub
         isRORun = True
         trayIconAdd Me, INI_SETTINGS.Title & " - " & txtUser
-        Me.Hide
     Else
         If isRORun = False Then Exit Sub
         isRORun = False
         trayIconDel Me
+        
         Me.Show
-        ForceWindowToTop Me.hWnd
-        txtPass = vbNullString
-        txtPass.SetFocus
     End If
 End Sub
 
@@ -244,19 +241,22 @@ On Error GoTo hell
         Exit Sub
     End If
     
-    'Me.Hide
-    RO_PID = Shell(ROExeLoc & " " & INI_SETTINGS.EXEArg & " -t:" & cMD5(txtPass) & " " & txtUser & " server", vbNormalFocus)
+    Me.Hide
+    Dim strPass As String
+    strPass = cMD5(txtPass)
+    txtPass = vbNullString
+    RO_PID = Shell(ROExeLoc & " " & INI_SETTINGS.EXEArg & " /account:clientinfo.xml -t:" & strPass & " " & txtUser & " server", vbNormalFocus)
     
     Exit Sub
 hell:
     MsgBox "Error", vbExclamation, INI_SETTINGS.Title
 End Sub
 
-Function cMD5(ByVal Pass As String) As String
+Function cMD5(ByVal pass As String) As String
     If INI_SETTINGS.MD5 = "true" Then
-        cMD5 = DigestStrToHexStr(Pass)
+        cMD5 = DigestStrToHexStr(pass)
     Else
-        cMD5 = Pass
+        cMD5 = pass
     End If
 End Function
 

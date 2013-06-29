@@ -19,6 +19,7 @@
 //=			ini file uses the same name as exe, as suggestion by Yommy
 //=			Thanks to Igniz and Cjei for buttons and skins
 //=	v0.006	Added show in tray when playing, as suggestion by EvilPuncker
+//=	v0.007	Window Focus Fix
 //==============================================================================
 //=
 //= Having a bad time since I don't know GRF, Somebody teach me /sob. Still lurking, Will study C
