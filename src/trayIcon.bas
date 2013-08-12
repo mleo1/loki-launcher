@@ -59,4 +59,3 @@ Public Function trayIconDel(Form As Form)
     
     Shell_NotifyIconA NIM_DELETE, nid
 End Function
-

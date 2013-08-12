@@ -51,7 +51,7 @@ If debugMode > 0 Then GoTo dmode
 dmode:
         frmLauncher.Show
     Else
-        frmPatcher.Show
+        'frmPatcher.Show
     End If
 End Sub
 

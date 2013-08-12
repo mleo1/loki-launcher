@@ -1,6 +1,5 @@
 VERSION 5.00
 Begin VB.Form frmLauncher 
-   AutoRedraw      =   -1  'True
    BackColor       =   &H00FF00FF&
    BorderStyle     =   0  'None
    Caption         =   "Loki Launcher"
@@ -140,11 +139,11 @@ End If
     End If
 End Sub
 
-Private Sub Form_MouseDown(Button As Integer, Shift As Integer, x As Single, y As Single)
+Private Sub Form_MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
     moveForm Me
 End Sub
 
-Private Sub imgKeep_MouseDown(Button As Integer, Shift As Integer, x As Single, y As Single)
+Private Sub imgKeep_MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
     If Keep Then
         imgKeep.Picture = frmRes.imgCheckOFF.Picture
         Keep = False
@@ -158,7 +157,7 @@ Private Sub imgKeep_MouseDown(Button As Integer, Shift As Integer, x As Single, 
     End If
 End Sub
 
-Private Sub Form_MouseMove(Button As Integer, Shift As Integer, x As Single, y As Single)
+Private Sub Form_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
     If Mode = "f" Then Exit Sub
     imgLogin.Picture = frmRes.imgLoginA.Picture
     imgExit.Picture = frmRes.imgExitA.Picture
@@ -166,37 +165,37 @@ Private Sub Form_MouseMove(Button As Integer, Shift As Integer, x As Single, y A
     Mode = "f"
 End Sub
 
-Private Sub imgLogin_MouseMove(Button As Integer, Shift As Integer, x As Single, y As Single)
+Private Sub imgLogin_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
     If Mode = "l" Then Exit Sub
     imgLogin.Picture = frmRes.imgLoginB.Picture
 imgExit.Picture = frmRes.imgExitA.Picture
     Mode = "l"
 End Sub
 
-Private Sub imgLogin_MouseDown(Button As Integer, Shift As Integer, x As Single, y As Single)
+Private Sub imgLogin_MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
     imgLogin.Picture = frmRes.imgLoginC.Picture
 End Sub
 
-Private Sub imgReplay_MouseMove(Button As Integer, Shift As Integer, x As Single, y As Single)
+Private Sub imgReplay_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
     imgReplay.Picture = frmRes.imgReplayB
 End Sub
 
-Private Sub imgReplay_MouseDown(Button As Integer, Shift As Integer, x As Single, y As Single)
+Private Sub imgReplay_MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
     imgReplay.Picture = frmRes.imgReplayC
 End Sub
 
-Private Sub imgReplay_MouseUp(Button As Integer, Shift As Integer, x As Single, y As Single)
+Private Sub imgReplay_MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
     imgReplay.Picture = frmRes.imgReplayA
 End Sub
 
-Private Sub imgExit_MouseMove(Button As Integer, Shift As Integer, x As Single, y As Single)
+Private Sub imgExit_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
     If Mode = "e" Then Exit Sub
     imgExit.Picture = frmRes.imgExitB.Picture
 imgLogin.Picture = frmRes.imgLoginA.Picture
     Mode = "e"
 End Sub
 
-Private Sub imgExit_MouseDown(Button As Integer, Shift As Integer, x As Single, y As Single)
+Private Sub imgExit_MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
     imgExit.Picture = frmRes.imgExitC.Picture
 End Sub
 
@@ -262,21 +261,21 @@ End Function
 
 Private Sub imgReplay_Click()
     Unload Me
-    Shell ROExeLoc & " -Replay", vbNormalFocus
+    Shell ROExeLoc & " " & INI_SETTINGS.EXEArg & " -Replay", vbNormalFocus
 End Sub
 
 Private Sub txtUser_KeyUp(KeyCode As Integer, Shift As Integer)
     If Keep = True Then WriteIni "Loki Launcher", "User", txtUser
 End Sub
 
-Private Sub imgLoginBox_MouseDown(Button As Integer, Shift As Integer, x As Single, y As Single)
-    MX = x
-    MY = y
+Private Sub imgLoginBox_MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
+    MX = X
+    MY = Y
     Mode = "md"
 End Sub
 
-Private Sub imgLoginBox_MouseMove(Button As Integer, Shift As Integer, x As Single, y As Single)
-    If Mode = "md" Then MoveDrag x, y
+Private Sub imgLoginBox_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
+    If Mode = "md" Then MoveDrag X, Y
 
     If Mode = "md" Then Exit Sub
     imgLogin.Picture = frmRes.imgLoginA.Picture
@@ -285,12 +284,12 @@ Private Sub imgLoginBox_MouseMove(Button As Integer, Shift As Integer, x As Sing
     Mode = "lb"
 End Sub
 
-Private Sub imgLoginBox_MouseUp(Button As Integer, Shift As Integer, x As Single, y As Single)
+Private Sub imgLoginBox_MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
     Mode = "lb"
 End Sub
 
-Public Function MoveDrag(x As Single, y As Single)
+Public Function MoveDrag(X As Single, Y As Single)
     For Each Lokis In frmLauncher
-        If Not TypeOf Lokis Is Timer Then Lokis.Move Lokis.Left + (x - MX), Lokis.Top + (y - MY)
+        If Not TypeOf Lokis Is Timer Then Lokis.Move Lokis.Left + (X - MX), Lokis.Top + (Y - MY)
     Next
 End Function
