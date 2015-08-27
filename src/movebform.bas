@@ -9,7 +9,7 @@ Private Const WM_NCLBUTTONDOWN = &HA1
  
 Private Const WM_SYSCOMMAND = &H112
 
-Public Function moveForm(Form As Form)
+Public Function MoveForm(Form As Form)
     ReleaseCapture
     SendMessage Form.hWnd, WM_NCLBUTTONDOWN, HTCAPTION, 0&
 End Function

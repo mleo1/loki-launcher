@@ -414,3 +414,4 @@ Private Function LongToUnsigned(ByVal Value As Long) As Double
       LongToUnsigned = Value
    End If
 End Function
+

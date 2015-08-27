@@ -33,7 +33,7 @@ Public Declare Function TransparentBlt Lib "msimg32" ( _
     ByVal nHeightSrc As Long, _
     ByVal crTransparent As Long) As Long
 
-Public Function transparentForm(ByVal Form As Form)
+Public Function TransparentForm(ByVal Form As Form)
     SetWindowLong Form.hWnd, _
                   GWL_EXSTYLE, _
                   GetWindowLong(Form.hWnd, GWL_EXSTYLE) Or WS_EX_LAYERED
