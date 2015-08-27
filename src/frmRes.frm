@@ -1,129 +1,43 @@
 VERSION 5.00
 Begin VB.Form frmRes 
-   AutoRedraw      =   -1  'True
-   BackColor       =   &H00FF00FF&
+   Appearance      =   0  'Flat
+   BackColor       =   &H80000005&
    BorderStyle     =   1  'Fixed Single
-   Caption         =   "frmRes"
-   ClientHeight    =   4320
+   Caption         =   "Res"
+   ClientHeight    =   2385
    ClientLeft      =   45
    ClientTop       =   435
-   ClientWidth     =   4410
+   ClientWidth     =   2190
    Icon            =   "frmRes.frx":0000
    LinkTopic       =   "Form2"
    MaxButton       =   0   'False
    MinButton       =   0   'False
-   ScaleHeight     =   288
+   ScaleHeight     =   159
    ScaleMode       =   3  'Pixel
-   ScaleWidth      =   294
+   ScaleWidth      =   146
    StartUpPosition =   3  'Windows Default
    Tag             =   "patch.ini"
-   Begin VB.PictureBox picStartC 
-      AutoSize        =   -1  'True
-      BorderStyle     =   0  'None
-      Height          =   465
-      Left            =   480
-      Picture         =   "frmRes.frx":058A
-      ScaleHeight     =   31
-      ScaleMode       =   3  'Pixel
-      ScaleWidth      =   107
-      TabIndex        =   5
-      Top             =   3600
-      Width           =   1605
-   End
-   Begin VB.PictureBox picExitC 
-      AutoSize        =   -1  'True
-      BorderStyle     =   0  'None
-      Height          =   465
-      Left            =   2160
-      Picture         =   "frmRes.frx":2D0A
-      ScaleHeight     =   31
-      ScaleMode       =   3  'Pixel
-      ScaleWidth      =   107
-      TabIndex        =   4
-      Top             =   3600
-      Width           =   1605
-   End
-   Begin VB.PictureBox picStartB 
-      AutoSize        =   -1  'True
-      BorderStyle     =   0  'None
-      Height          =   465
-      Left            =   480
-      Picture         =   "frmRes.frx":548A
-      ScaleHeight     =   31
-      ScaleMode       =   3  'Pixel
-      ScaleWidth      =   107
-      TabIndex        =   3
-      Top             =   3000
-      Width           =   1605
-   End
-   Begin VB.PictureBox picExitB 
-      AutoSize        =   -1  'True
-      BorderStyle     =   0  'None
-      Height          =   465
-      Left            =   2160
-      Picture         =   "frmRes.frx":7C0A
-      ScaleHeight     =   31
-      ScaleMode       =   3  'Pixel
-      ScaleWidth      =   107
-      TabIndex        =   2
-      Top             =   3000
-      Width           =   1605
-   End
-   Begin VB.PictureBox picStartA 
-      AutoSize        =   -1  'True
-      BorderStyle     =   0  'None
-      Height          =   465
-      Left            =   480
-      Picture         =   "frmRes.frx":A38A
-      ScaleHeight     =   31
-      ScaleMode       =   3  'Pixel
-      ScaleWidth      =   107
-      TabIndex        =   1
-      Top             =   2400
-      Width           =   1605
-   End
-   Begin VB.PictureBox picExitA 
-      AutoSize        =   -1  'True
-      BorderStyle     =   0  'None
-      Height          =   465
-      Left            =   2160
-      Picture         =   "frmRes.frx":CB0A
-      ScaleHeight     =   31
-      ScaleMode       =   3  'Pixel
-      ScaleWidth      =   107
-      TabIndex        =   0
-      Top             =   2400
-      Width           =   1605
-   End
    Begin VB.Image imgReplayA 
       Appearance      =   0  'Flat
       Height          =   180
-      Left            =   2520
-      Picture         =   "frmRes.frx":F28A
+      Left            =   1320
+      Picture         =   "frmRes.frx":058A
       Top             =   240
       Width           =   480
    End
    Begin VB.Image imgReplayB 
       Appearance      =   0  'Flat
       Height          =   180
-      Left            =   2520
-      Picture         =   "frmRes.frx":F74C
+      Left            =   1320
+      Picture         =   "frmRes.frx":0A4C
       Top             =   600
-      Width           =   480
-   End
-   Begin VB.Image imgReplayC 
-      Appearance      =   0  'Flat
-      Height          =   180
-      Left            =   2520
-      Picture         =   "frmRes.frx":FC0E
-      Top             =   960
       Width           =   480
    End
    Begin VB.Image imgCheckOFF 
       Appearance      =   0  'Flat
       Height          =   150
       Left            =   600
-      Picture         =   "frmRes.frx":100D0
+      Picture         =   "frmRes.frx":0F0E
       Top             =   1920
       Width           =   510
    End
@@ -131,55 +45,23 @@ Begin VB.Form frmRes
       Appearance      =   0  'Flat
       Height          =   150
       Left            =   600
-      Picture         =   "frmRes.frx":1067A
+      Picture         =   "frmRes.frx":14B8
       Top             =   1560
       Width           =   510
    End
-   Begin VB.Image imgExitC 
+   Begin VB.Image imgB 
       Appearance      =   0  'Flat
       Height          =   300
-      Left            =   1440
-      Picture         =   "frmRes.frx":10C24
-      Top             =   960
-      Width           =   630
-   End
-   Begin VB.Image imgExitB 
-      Appearance      =   0  'Flat
-      Height          =   300
-      Left            =   1440
-      Picture         =   "frmRes.frx":113D6
+      Left            =   480
+      Picture         =   "frmRes.frx":1A62
       Top             =   600
       Width           =   630
    End
-   Begin VB.Image imgExitA 
-      Appearance      =   0  'Flat
-      Height          =   300
-      Left            =   1440
-      Picture         =   "frmRes.frx":11B86
-      Top             =   240
-      Width           =   630
-   End
-   Begin VB.Image imgLoginC 
+   Begin VB.Image imgA 
       Appearance      =   0  'Flat
       Height          =   300
       Left            =   480
-      Picture         =   "frmRes.frx":1206E
-      Top             =   960
-      Width           =   630
-   End
-   Begin VB.Image imgLoginB 
-      Appearance      =   0  'Flat
-      Height          =   300
-      Left            =   480
-      Picture         =   "frmRes.frx":1281E
-      Top             =   600
-      Width           =   630
-   End
-   Begin VB.Image imgLoginA 
-      Appearance      =   0  'Flat
-      Height          =   300
-      Left            =   480
-      Picture         =   "frmRes.frx":12FCE
+      Picture         =   "frmRes.frx":2214
       Top             =   240
       Width           =   630
    End

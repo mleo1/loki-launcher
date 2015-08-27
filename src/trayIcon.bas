@@ -1,4 +1,4 @@
-Attribute VB_Name = "trayIcon"
+Attribute VB_Name = "trayicon"
 Option Explicit
     
 Private Type NOTIFYICONDATA
@@ -21,7 +21,9 @@ Private Const NIF_TIP = 4
 Private Declare Function Shell_NotifyIconA Lib "SHELL32" _
     (ByVal dwMessage As Long, lpData As NOTIFYICONDATA) As Integer
 
-Private Function setNOTIFYICONDATA(hWnd As Long, ID As Long, _
+Public Declare Function CreateIconFromResource Lib "user32" (presbits As Byte, ByVal dwResSize As Long, ByVal fIcon As Long, ByVal dwVer As Long) As Long
+
+Private Function SetNOTIFYICONDATA(hWnd As Long, ID As Long, _
     Flags As Long, CallbackMessage As Long, Icon As Long, _
     Tip As String) As NOTIFYICONDATA
     
@@ -33,15 +35,15 @@ Private Function setNOTIFYICONDATA(hWnd As Long, ID As Long, _
     nidTemp.uFlags = Flags
     nidTemp.uCallbackMessage = CallbackMessage
     nidTemp.hIcon = Icon
-    nidTemp.szTip = Tip & Chr$(0)
-    
-    setNOTIFYICONDATA = nidTemp
+    nidTemp.szTip = Tip & Chr(0)
+
+    SetNOTIFYICONDATA = nidTemp
 End Function
 
-Public Function trayIconAdd(Form As Form, tag As String)
+Public Function TrayIconAdd(Form As Form, tag As String)
     Dim nid As NOTIFYICONDATA
     
-    nid = setNOTIFYICONDATA( _
+    nid = SetNOTIFYICONDATA( _
         Form.hWnd, vbNull, _
         NIF_MESSAGE Or NIF_ICON Or NIF_TIP, _
         vbNull, Form.Icon, tag)
@@ -49,10 +51,10 @@ Public Function trayIconAdd(Form As Form, tag As String)
    Shell_NotifyIconA NIM_ADD, nid
 End Function
 
-Public Function trayIconDel(Form As Form)
+Public Function TrayIconDel(Form As Form)
     Dim nid As NOTIFYICONDATA
     
-    nid = setNOTIFYICONDATA( _
+    nid = SetNOTIFYICONDATA( _
         Form.hWnd, vbNull, _
         NIF_MESSAGE Or NIF_ICON Or NIF_TIP, _
         vbNull, Form.Icon, vbNullString)
